@@ -31,19 +31,6 @@
         .iconfont {
             position: relative;
             font-size: 0.55rem;
-
-            /* .cartNum {
-                        position: absolute;
-                        top: -3px;
-                        right: -6px;
-                        font-size: 12px;
-                        width: 14px;
-                        height: 14px;
-                        line-height: 14px;
-                        border-radius: 50%;
-                        background-color: #ee0a24;
-                        color: #fff;
-                    } */
         }
     }
 </style>
