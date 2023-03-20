@@ -9,35 +9,35 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         path: '/home',
         component: () => import('@/views/Home/index.vue'),
         meta: {
-            isShowInNav: true
+            isShowInPage: true
         }
     },
     {
         path: '/cart',
         component: () => import('@/views/Cart/index.vue'),
         meta: {
-            isShowInNav: true
+            isShowInPage: true
         }
     },
     {
         path: '/cate',
         component: () => import('@/views/Category/index.vue'),
         meta: {
-            isShowInNav: true
+            isShowInPage: true
         }
     },
     {
-        path: '/User',
+        path: '/user',
         component: () => import('@/views/User/index.vue'),
         meta: {
-            isShowInNav: true
+            isShowInPage: true
         }
     },
     {
         path: '/login',
         component: () => import('@/views/Login/index.vue'),
         meta: {
-            isShowInNav: false
+            isShowInPage: false
         }
     },
 ]

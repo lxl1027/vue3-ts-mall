@@ -1,14 +1,23 @@
 <template>
   <router-view></router-view>
-  <van-button type="primary">主要按钮</van-button>
-  <van-button type="success">成功按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="warning">警告按钮</van-button>
-  <van-button type="danger">危险按钮</van-button>
+  <TabBar v-if="isShow"></TabBar>
 </template>
 
 <script setup lang='ts'>
-  import { ref, reactive } from 'vue'
+  import TabBar from '@/components/TabBar.vue'
+  import { ref, reactive, watch } from 'vue'
+  import { useRoute } from 'vue-router'
+  const route = useRoute()
+
+  const isShow = ref(false)
+
+  watch(route, (newVal) => {
+    isShow.value = newVal.meta.isShowInPage as boolean
+  }, {
+    immediate: true
+  })
+
+
 
 </script>
 
