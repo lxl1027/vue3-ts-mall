@@ -1,9 +1,11 @@
 <template>
-  <router-view></router-view>
+    <div>
+        Category
+    </div>
 </template>
 
 <script setup lang='ts'>
-  import { ref, reactive } from 'vue'
+    import { ref, reactive } from 'vue'
 
 </script>
 
