@@ -1,9 +1,18 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+const app = createApp(App)
 // 引入路由
 import router from './router'
 
-const app = createApp(App)
+import './assets/fonts/iconfont.css'
+import './assets/flexible.js'
+import './assets/reset.css'
+
+import vant from 'vant'
+import 'vant/lib/index.css'
+app.use(vant)
+
+
 // 注册路由
 app.use(router)
 
