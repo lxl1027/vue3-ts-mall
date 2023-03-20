@@ -50,6 +50,7 @@
     import { useRouter } from 'vue-router'
     import { register, login } from '@/api/user'
     const router = useRouter()
+    // 用户页面的信息
     let userInfo = reactive({
         username: '',
         password: '',
@@ -59,7 +60,14 @@
     // 选择登录或者注册
     const changeLogOrReg = () => {
         userInfo.isTitle = !userInfo.isTitle
-        userInfo.username = userInfo.password = userInfo.identifyCode = ''
+        resetForm()
+    }
+    // 清空表单
+    const resetForm = () => {
+        userInfo.username = ''
+        userInfo.password = ''
+        userInfo.identifyCode = ''
+        refreshCode()
     }
     // submit
     const onSubmit = async () => {
@@ -81,42 +89,39 @@
         }
         // 登录
         if (userInfo.isTitle) {
-            const { data } = await login(userInfo.username, userInfo.password)
-            if (data.resultCode === 500) return
-            showNotify({
-                message: '登录成功',
-                type: 'success',
-                duration: 1000,
-                background: '#1baeae',
-                color: '#fff'
-            })
-            router.replace('/home')
-        } else {
             try {
-                const { data } = await register(userInfo.username, userInfo.password)
-                if (data.resultCode === 500) {
-                    showNotify({
-                        message: '用户名已存在',
-                        type: 'danger',
-                        duration: 1000,
-                    })
-                    userInfo.username = ''
-                    return
-                }
+                await login(userInfo.username, userInfo.password)
+                showNotify({
+                    message: '登录成功',
+                    type: 'success',
+                    duration: 1000,
+                    background: '#1baeae',
+                    color: '#fff'
+                })
+                router.replace('/home')
+            } catch (err) {
+                resetForm()
+                console.log('Error:', err)
+            }
+        } else {
+            //  注册
+            try {
+                await register(userInfo.username, userInfo.password)
                 showNotify({
                     message: '注册成功',
-                    type: 'primary',
+                    type: 'success',
                     duration: 1000,
+                    background: '#1baeae',
+                    color: '#fff'
                 })
-                userInfo.identifyCode = ''
-                refreshCode()
+                resetForm()
                 userInfo.isTitle = true
             } catch (err) {
-                console.log('err:', err)
+                resetForm()
+                console.log('Error:', err)
             }
         }
     }
-
     // 手机号验证规则
     const nameValidator = (val: string) => {
         /*  
@@ -135,16 +140,12 @@
         else return false
     }
 
-
-
     // 图形验证码
     let identifyCodes = "1234567890"
     let identifyCode = ref('')
-
     const randomNum = (min: number, max: number) => {
         return Math.floor(Math.random() * (max - min) + min)
     }
-
     const makeCode = (o: string, l: number) => {
         for (let i = 0; i < l; i++) {
             identifyCode.value += o[
@@ -152,12 +153,10 @@
             ];
         }
     }
-
     const refreshCode = () => {
         identifyCode.value = "";
         makeCode(identifyCodes, 4);
     }
-
     onMounted(() => {
         identifyCode.value = "";
         makeCode(identifyCodes, 4);

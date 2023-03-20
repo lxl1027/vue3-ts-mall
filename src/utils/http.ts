@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { getToken, setToken } from './auth'
-import { showFailToast, showSuccessToast } from 'vant'
+import { showFailToast, showNotify } from 'vant'
 import router from '@/router'
 
 // http://backend-api-01.newbee.ltd/api/v1
@@ -30,23 +30,16 @@ http.interceptors.response.use(function (response) {
         showFailToast('服务端繁忙，请稍后再试！')
     }
     // code不等于200和500
-    if (response.data.resultCode !== 200 && response.data.resultCode !== 500) {
-        /* // 500表示用户名已存在或者登录失败
-        if (response.data.resultCode === 500) {
-            return response
-        } */
+    if (response.data.resultCode !== 200) {
         // 返回的数据中如果存在message 提示message
-        if (response.data.message) showFailToast(response.data.message)
+        if (response.data.message) showNotify({
+            message: response.data.message,
+            type: 'danger',
+            duration: 1000
+        })
         // 如果code为416需要返回登录页面
         if (response.data.resultCode === 416) {
             router.push('/login')
-        }
-        // 如果response.data.data存在 且 window.location.hash == '#/login'
-        if (response.data.data && window.location.hash == '#/login') {
-            console.log(1)
-            setToken(response.data.data)
-            http.defaults.headers['token'] = response.data.data
-            showSuccessToast('登录成功！')
         }
         return Promise.reject(response.data.message)
     }
@@ -55,7 +48,6 @@ http.interceptors.response.use(function (response) {
         console.log(1)
         setToken(response.data.data)
         http.defaults.headers['token'] = response.data.data
-
     }
     // 对响应数据做点什么
     return response
