@@ -49,6 +49,8 @@
     import { ref, reactive, onMounted } from 'vue'
     import { useRouter } from 'vue-router'
     import { register, login } from '@/api/user'
+    import { useCartStore } from '@/store/cart'
+    const Cart = useCartStore()
     const router = useRouter()
     // 用户页面的信息
     let userInfo = reactive({
@@ -98,6 +100,7 @@
                     background: '#1baeae',
                     color: '#fff'
                 })
+                Cart.updateCart()
                 router.replace('/home')
             } catch (err) {
                 resetForm()

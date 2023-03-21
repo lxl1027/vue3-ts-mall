@@ -40,6 +40,13 @@ export const constantRoutes: Array<RouteRecordRaw> = [
             isShowInPage: false
         }
     },
+    {
+        path: '/info/:goodsId',
+        component: () => import('@/views/GoodInfo/index.vue'),
+        meta: {
+            isShowInPage: false
+        }
+    },
 ]
 export const asyncRoutes = []
 

@@ -29,15 +29,18 @@ http.interceptors.response.use(function (response) {
     if (typeof response.data !== 'object') {
         showFailToast('服务端繁忙，请稍后再试！')
     }
-    // code不等于200和500
+    // code不等于200
     if (response.data.resultCode !== 200) {
+        if (response.data.resultCode === 500 && response.data.message === "已存在！无需重复添加！") {
+            return response
+        }
         // 返回的数据中如果存在message 提示message
         if (response.data.message) showNotify({
             message: response.data.message,
             type: 'danger',
             duration: 1000
         })
-        // 如果code为416需要返回登录页面
+        // 如果code为416表示没有登录需要返回登录页面
         if (response.data.resultCode === 416) {
             router.push('/login')
         }

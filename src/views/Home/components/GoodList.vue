@@ -4,7 +4,7 @@
             <slot name="title">标题没加载出来</slot>
         </div>
         <ul class="good-list-content">
-            <router-link tag='li' to="/" v-for="item in list" :key="item.goodsId" class="good">
+            <router-link tag='li' :to="`/info/${item.goodsId}`" v-for="item in list" :key="item.goodsId" class="good">
                 <img class="good-img" :src="item.goodsCoverImg" alt="">
                 <div class="good-desc">
                     <h3 class="good-name">{{ item.goodsName }}</h3>
@@ -49,7 +49,7 @@
                 width: 50%;
                 padding: (10 / 37.5rem);
                 text-align: center;
-                border-bottom: 1px solid #e9e9e9;
+                border-bottom: (1 / 37.5rem) solid #e9e9e9;
 
                 &-img {
                     display: block;
@@ -81,11 +81,11 @@
 
 
                 &:nth-child(2n + 1) {
-                    border-right: .5px solid #e9e9e9;
+                    border-right: (0.5 / 37.5rem) solid #e9e9e9;
                 }
 
                 &:nth-child(2n) {
-                    border-left: .5px solid #e9e9e9;
+                    border-left: (0.5 / 37.5rem) solid #e9e9e9;
                 }
             }
         }

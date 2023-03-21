@@ -49,6 +49,7 @@
     import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
     import { getHome } from '@/api/home'
     import type { Carousel, Good } from '@/api/home'
+
     // 控制header的状态 
     let isTop = ref(false)
     // 轮播图的数据
@@ -124,8 +125,6 @@
             console.log('Error:', err)
         }
     }
-
-
     onMounted(() => {
         // 可以做节流
         // 绑定scroll事件
@@ -183,7 +182,7 @@
                     font-size: (20 / 37.5rem);
                     color: @primary;
                     font-weight: 700;
-                    border-right: 1px solid #666;
+                    border-right: (1 / 37.5rem) solid #666;
                 }
 
                 .search {
@@ -240,7 +239,6 @@
                     color: #2c3e50;
                 }
             }
-
 
         }
 
