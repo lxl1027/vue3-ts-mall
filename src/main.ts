@@ -6,7 +6,7 @@ import router from './router'
 
 import './assets/fonts/iconfont.css'
 import './assets/flexible.js'
-import './assets/reset.css'
+import './styles/reset.css'
 
 import vant from 'vant'
 import 'vant/lib/index.css'

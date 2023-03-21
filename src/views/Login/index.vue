@@ -164,6 +164,8 @@
 </script>
 
 <style scoped lang='less'>
+    @import '@/styles/mixin.less';
+
     .login {
         width: 100%;
         height: 100%;
@@ -196,7 +198,7 @@
                         margin-left: (10 / 37.5rem);
                         font-size: .4rem;
                         opacity: .7;
-                        color: #1baeae;
+                        color: @primary;
                     }
 
                     a.change-code:active {
