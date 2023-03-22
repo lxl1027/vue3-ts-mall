@@ -19,7 +19,7 @@ type cartItem = {
     goodsName: string
     sellingPrice: number
 }
-
+// 获取商品详情
 export const getGoodDetail = (id: string) => {
     return http.request<{
         resultCode: number
@@ -30,7 +30,7 @@ export const getGoodDetail = (id: string) => {
         method: 'get'
     })
 }
-
+// 获取购物车数据
 export const getCart = () => {
     return http.request<{
         resultCode: number
@@ -41,7 +41,7 @@ export const getCart = () => {
         method: 'get',
     })
 }
-
+// 加入购物车
 export const addGood = (count: number, id: number) => {
     return http.request<{
         resultCode: number

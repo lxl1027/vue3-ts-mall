@@ -1,13 +1,7 @@
 <template>
     <div class="good-info">
         <!-- 顶部导航栏 -->
-        <header>
-            <van-nav-bar title="商品详情" left-arrow @click-left="router.back()">
-                <template #right>
-                    <van-icon name="ellipsis" size="18" />
-                </template>
-            </van-nav-bar>
-        </header>
+        <CommonHeader :title="`商品详情`"></CommonHeader>
         <!-- 商品图片 -->
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
             <van-swipe-item v-for="(carousel, index) in state.carouselList" :key="index">
@@ -42,6 +36,7 @@
 </template>
 
 <script setup lang='ts'>
+    import CommonHeader from '@/components/CommonHeader.vue'
     import { onMounted, reactive } from 'vue'
     import { useRoute, useRouter } from 'vue-router'
     import { getGoodDetail, addGood } from '@/api/good'
@@ -93,7 +88,6 @@
             left: 0;
             z-index: 999;
             width: 100%;
-            box-sizing: border-box;
             background: #fff;
             border-bottom: 0.02667rem solid #dcdcdc;
         }

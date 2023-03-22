@@ -1,7 +1,7 @@
 import http from '@/utils/http'
 import md5 from 'js-md5'
 
-// login
+// register
 export const register = (name: string, password: string) => {
     return http.request<{
         resultCode: number
@@ -16,7 +16,7 @@ export const register = (name: string, password: string) => {
         }
     })
 }
-
+// login
 export const login = (name: string, password: string) => {
     return http.request<{
         resultCode: number

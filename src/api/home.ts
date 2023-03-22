@@ -6,6 +6,7 @@ type Data = {
     newGoodses: Good[]
     recommendGoodses: Good[]
 }
+
 export type Good = {
     goodsCoverImg: string
     goodsId: number
@@ -14,11 +15,12 @@ export type Good = {
     sellingPrice: number
     tag: string
 }
+
 export type Carousel = {
     carouselUrl: string
     redirectUrl: string
 }
-
+// 获取首页数据
 export const getHome = () => {
     return http.request<{
         resultCode: number

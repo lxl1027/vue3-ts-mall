@@ -1,13 +1,7 @@
 <template>
     <div class="login">
         <!-- 顶部导航栏 -->
-        <header>
-            <van-nav-bar :title="userInfo.isTitle ? '登录' : '注册'" left-arrow @click-left="router.back()">
-                <template #right>
-                    <van-icon name="ellipsis" size="18" />
-                </template>
-            </van-nav-bar>
-        </header>
+        <CommonHeader :title="userInfo.isTitle ? '登录' : '注册'"></CommonHeader>
         <!-- logo -->
         <img class="logo" src="https://s.yezgea02.com/1604045825972/newbee-mall-vue3-app-logo.png" width="100" height="100"
             alt="">
@@ -44,6 +38,7 @@
 </template>
 
 <script setup lang='ts'>
+    import CommonHeader from '@/components/CommonHeader.vue'
     import SIdentify from '@/components/SIdentify.vue'
     import { showFailToast, showNotify } from 'vant'
     import { ref, reactive, onMounted } from 'vue'
@@ -100,6 +95,7 @@
                     background: '#1baeae',
                     color: '#fff'
                 })
+                // 登录以后获取购物车数据
                 Cart.updateCart()
                 router.replace('/home')
             } catch (err) {
@@ -170,15 +166,7 @@
     @import '@/styles/mixin.less';
 
     .login {
-        width: 100%;
-        height: 100%;
-
-        header {
-            width: 100%;
-            box-sizing: border-box;
-            background: #fff;
-            border-bottom: 0.02667rem solid #dcdcdc;
-        }
+        padding-top: (46 / 37.5rem);
 
         .logo {
             width: 3.2rem;

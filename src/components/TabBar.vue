@@ -1,22 +1,22 @@
 <template>
     <van-tabbar route active-color="#1baeae">
-        <van-tabbar-item replace to="/home" icon="home-o">
+        <van-tabbar-item to="/home" icon="home-o">
             <span>首页</span>
             <template #icon>
                 <span class="icon iconfont icon-shouye"></span>
             </template>
         </van-tabbar-item>
-        <van-tabbar-item replace to="/cate" icon="search">
+        <van-tabbar-item to="/cate" icon="search">
             <span>分类</span>
             <template #icon>
                 <span class="icon iconfont icon-grouping"></span>
             </template></van-tabbar-item>
-        <van-tabbar-item replace to="/cart" icon="search" :badge="!Cart.count ? '' : Cart.count">
+        <van-tabbar-item to="/cart" icon="search" :badge="!Cart.count ? '' : Cart.count">
             <span>购物车</span>
             <template #icon>
                 <span class="icon iconfont icon-gouwuche"></span>
             </template></van-tabbar-item>
-        <van-tabbar-item replace to="/user" icon="search">
+        <van-tabbar-item to="/user" icon="search">
             <span>我的</span>
             <template #icon>
                 <span class="icon iconfont icon-31wode"></span>
