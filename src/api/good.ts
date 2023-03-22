@@ -56,7 +56,7 @@ export const addGood = (count: number, id: number) => {
         }
     })
 }
-// 在购物车中增加商品
+// 在购物车中修改商品数量
 export const modifyCart = (count: number, id: number) => {
     return http.request<{
         resultCode: number

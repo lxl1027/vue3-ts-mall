@@ -47,6 +47,20 @@ export const constantRoutes: Array<RouteRecordRaw> = [
             isShowInPage: false
         }
     },
+    {
+        path: '/address',
+        component: () => import('@/views/Address/index.vue'),
+        meta: {
+            isShowInPage: false
+        }
+    },
+    {
+        path: '/address-edit',
+        component: () => import('@/views/Address/AddressEdit.vue'),
+        meta: {
+            isShowInPage: false
+        }
+    },
 ]
 export const asyncRoutes = []
 

@@ -29,7 +29,6 @@
                 </van-swipe-cell>
             </van-checkbox-group>
         </div>
-
         <!-- 购物车结算栏 -->
         <van-submit-bar class="submit-all" :price="(fullPrice * 100)" button-text="结算" @submit="onSubmit">
             <van-checkbox checked-color="#1baeae" v-model="state.checkAll" @click="handleAllCheck">全选</van-checkbox>
@@ -63,10 +62,14 @@
 
     }
     /* 
-        监视idList idList的长度等于购物车里被选中的商品种类数量
+        1. 监视idList idList的长度等于购物车里被选中的商品种类数量
         发生变化就判断一次是否全选了 全选就把选中全选 反之取消选中
+        2. 也可以给每个good加一个checked属性 然后用计算属性算出checkAll
+        因为getter需要用array.every来遍历得到true或者false 所以当每个good选中或者取消选中时
+        都会重新算一遍checkAll setter就forEach赋值就可以了
     */
-    watch(() => state.idList.length, (newVal, oldVal) => {
+    // 监视idList的长度实现全选和反选
+    watch(() => state.idList.length, (newVal) => {
         if (newVal !== state.goodList.length) {
             state.checkAll = false
         } else {
