@@ -65,7 +65,6 @@
     onMounted(async () => {
         const { data: { data } } = await getCate()
         state.FirstLevelCateList = data
-        console.log(data)
     })
 </script>
 
@@ -92,6 +91,7 @@
             font-size: (16 / 37.5rem);
             width: (52 / 37.5rem);
             height: 100%;
+            color: var(--van-nav-bar-icon-color);
         }
 
         &-search {

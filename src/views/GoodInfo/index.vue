@@ -31,7 +31,7 @@
                 :badge="!Cart.count ? '' : Cart.count" />
             <van-action-bar-button @click="add" type="warning" text="加入购物车" />
             <van-action-bar-button @click="buy" type="danger" text="立即购买" />
-        </van-action-bar>buy
+        </van-action-bar>
     </div>
 </template>
 
@@ -71,6 +71,7 @@
         state.price = sellingPrice
         state.content = goodsDetailContent
         state.id = goodsId
+        console.log(state.content)
     })
 
 </script>
@@ -79,18 +80,6 @@
     @import '@/styles/mixin.less';
 
     .good-info {
-        width: 100%;
-        height: 100%;
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 999;
-            width: 100%;
-            background: #fff;
-            border-bottom: 0.02667rem solid #dcdcdc;
-        }
 
         .my-swipe {
             margin-top: (46 / 37.5rem);
@@ -146,6 +135,10 @@
 
         .good-content {
             padding: 0 (20 / 37.5rem) (50 / 37.5rem);
+
+            :deep(img) {
+                width: 100%;
+            }
         }
 
         .van-action-bar-button--warning {

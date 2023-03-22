@@ -11,7 +11,7 @@ type GoodInfo = {
     sellingPrice: number
     tag: string
 }
-type cartItem = {
+export type CartItem = {
     cartItemId: number
     goodsCount: number
     goodsCoverImg: string
@@ -35,7 +35,7 @@ export const getCart = () => {
     return http.request<{
         resultCode: number
         message: string
-        data: cartItem[]
+        data: CartItem[]
     }>({
         url: '/shop-cart',
         method: 'get',
@@ -54,5 +54,31 @@ export const addGood = (count: number, id: number) => {
             goodsCount: count,
             goodsId: id
         }
+    })
+}
+// 在购物车中增加商品
+export const modifyCart = (count: number, id: number) => {
+    return http.request<{
+        resultCode: number
+        message: string
+        data: null
+    }>({
+        url: '/shop-cart',
+        method: 'put',
+        data: {
+            cartItemId: id,
+            goodsCount: count,
+        }
+    })
+}
+// 删除商品
+export const deleteGood = (id: number) => {
+    return http.request<{
+        resultCode: number
+        message: string
+        data: null
+    }>({
+        url: `/shop-cart/${id}`,
+        method: 'delete'
     })
 }

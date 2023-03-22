@@ -31,3 +31,18 @@ export const login = (name: string, password: string) => {
         }
     })
 }
+// 获取用户信息
+export const getInfo = () => {
+    return http.request<{
+        resultCode: number
+        message: string
+        data: {
+            introduceSign: string
+            loginName: string
+            nickName: string
+        }
+    }>({
+        url: '/user/info',
+        method: 'get'
+    })
+}
