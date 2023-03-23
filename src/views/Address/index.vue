@@ -2,7 +2,7 @@
     <div class="address">
         <!-- 通用头部 -->
         <CommenHeader :title="'地址管理'"></CommenHeader>
-        <van-address-list v-if="state.from !== 'mine'" v-model="state.chosenAddressId" :list="state.list"
+        <van-address-list v-if="state.from === 'create-order'" v-model="state.chosenAddressId" :list="state.list"
             default-tag-text="默认" @add="onAdd" @edit="onEdit" @select="select" />
         <van-address-list v-else v-model="state.chosenAddressId" :list="state.list" default-tag-text="默认" @add="onAdd"
             @edit="onEdit" />
@@ -11,10 +11,10 @@
 
 <script setup lang='ts'>
     import CommenHeader from '@/components/CommonHeader.vue'
-    import { ref, reactive, onMounted } from 'vue'
+    import { reactive, onMounted } from 'vue'
     import { useRouter, useRoute } from 'vue-router'
     import { getAddress } from '@/api/address'
-    import type { AddressListProps, AddressListAddress } from 'vant'
+    import type { AddressListAddress } from 'vant'
     const route = useRoute()
     const router = useRouter()
     const state = reactive<{
@@ -32,10 +32,14 @@
         list: [],
         from: (route.query.from ?? '') as string
     })
-    const select = () => {
-        /* router.push({
+    const select = (item: AddressListAddress, index: number) => {
+        console.log(item, index)
+        router.push({
             path: '/create-order',
-        }) */
+            query: {
+                addressId: item.id,
+            }
+        })
     }
     const onAdd = () => {
         router.push({
@@ -72,6 +76,7 @@
         })
     }
     onMounted(() => {
+        console.log(route.query)
         init()
     })
 </script>

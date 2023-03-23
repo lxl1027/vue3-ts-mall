@@ -45,6 +45,7 @@
     import { getCart, modifyCart, deleteGood } from '@/api/good'
     import type { CartItem } from '@/api/good'
     import { closeToast, showFailToast, showLoadingToast } from 'vant'
+    import router from '@/router'
     // 获取checkbox-group的实例
     const checkboxGroup = ref()
     // 页面的状态
@@ -58,8 +59,20 @@
         idList: []
     })
     // 结算
-    const onSubmit = () => {
-
+    const onSubmit = async () => {
+        // idList为0说明没选中商品，不可以进行结算
+        if (state.idList.length === 0) {
+            showFailToast('请先选择商品再进行结算！')
+            return
+        }
+        // 可以进行结算
+        const ids = JSON.parse(JSON.stringify(state.idList))
+        router.push({
+            path: '/create-order',
+            query: {
+                ids,
+            }
+        })
     }
     /* 
         1. 监视idList idList的长度等于购物车里被选中的商品种类数量

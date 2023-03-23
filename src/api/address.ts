@@ -9,7 +9,7 @@ type AddressInfoAdd = {
     userName: string
     userPhone: string
 }
-type AddressInfoGet = {
+export type AddressInfoGet = {
     userId: number
     addressId: number
     cityName: string
@@ -27,6 +27,20 @@ type AddressInfoEdit = {
     detailAddress: string
     provinceName: string
     regionName: string
+    userName: string
+    userPhone: string
+}
+export type AddressDefault = {
+    addressId: number
+    cityName: string
+    createTime: string
+    defaultFlag: number
+    detailAddress: string
+    isDeleted: number
+    provinceName: string
+    regionName: string
+    updateTime: string
+    userId: number
     userName: string
     userPhone: string
 }
@@ -90,5 +104,17 @@ export const deleteAddress = (id: string) => {
     }>({
         url: `/address/${id}`,
         method: 'delete'
+    })
+}
+
+// 获取默认地址
+export const getDefaultAddress = () => {
+    return http.request<{
+        resultCode: number
+        message: string
+        data: AddressDefault
+    }>({
+        url: '/address/default',
+        method: 'get'
     })
 }

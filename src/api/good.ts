@@ -82,3 +82,17 @@ export const deleteGood = (id: number) => {
         method: 'delete'
     })
 }
+
+export const settleGood = (ids: string) => {
+    return http.request<{
+        resultCode: number
+        message: string
+        data: CartItem[]
+    }>({
+        url: '/shop-cart/settle',
+        method: 'get',
+        params: {
+            cartItemIds: ids
+        }
+    })
+}

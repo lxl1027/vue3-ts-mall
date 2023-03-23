@@ -61,6 +61,27 @@ export const constantRoutes: Array<RouteRecordRaw> = [
             isShowInPage: false
         }
     },
+    {
+        path: '/order',
+        component: () => import('@/views/Order/index.vue'),
+        meta: {
+            isShowInPage: false
+        }
+    },
+    {
+        path: '/order-detail',
+        component: () => import('@/views/Order/OrderDetail.vue'),
+        meta: {
+            isShowInPage: false
+        }
+    },
+    {
+        path: '/create-order',
+        component: () => import('@/views/Order/CreateOrder.vue'),
+        meta: {
+            isShowInPage: false
+        }
+    },
 ]
 export const asyncRoutes = []
 
