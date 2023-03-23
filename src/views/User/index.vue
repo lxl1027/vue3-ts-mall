@@ -15,15 +15,15 @@
         </div>
         <!-- 订单，账号管理，地址管理页面 -->
         <ul class="other">
-            <li>
+            <li @click="router.push('/order')">
                 <div>我的订单</div>
                 <van-icon name="arrow" />
             </li>
-            <li>
+            <li @click="router.push('/setting')">
                 <div>账号管理</div>
                 <van-icon name="arrow" />
             </li>
-            <li>
+            <li @click="router.push('/address')">
                 <div>地址管理</div>
                 <van-icon name="arrow" />
             </li>
@@ -35,6 +35,8 @@
     import CommonHeader from '@/components/CommonHeader.vue'
     import { reactive, onMounted, toRefs } from 'vue'
     import { getInfo } from '@/api/user'
+    import { useRouter } from 'vue-router'
+    const router = useRouter()
 
     // 用户信息
     const state = reactive({

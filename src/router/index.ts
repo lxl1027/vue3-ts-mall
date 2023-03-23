@@ -82,6 +82,13 @@ export const constantRoutes: Array<RouteRecordRaw> = [
             isShowInPage: false
         }
     },
+    {
+        path: '/setting',
+        component: () => import('@/views/User/Setting.vue'),
+        meta: {
+            isShowInPage: false
+        }
+    },
 ]
 export const asyncRoutes = []
 

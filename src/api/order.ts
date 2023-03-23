@@ -1,7 +1,7 @@
 import http from '@/utils/http'
 
 
-type OrderInfo = {
+export type OrderInfo = {
     createTime: string
     newBeeMallOrderItemVOS: Array<OrderGood>
     orderNo: string
@@ -21,13 +21,13 @@ type OrderGood = {
     sellingPrice: number
 }
 // 获取特定订单
-export const getOrderById = (id: string) => {
+export const getOrderByNo = (no: string) => {
     return http.request<{
         resultCode: number
         message: string
         data: OrderInfo
     }>({
-        url: `/order/${id}`,
+        url: `/order/${no}`,
         method: 'get'
     })
 }
@@ -55,7 +55,7 @@ type GetAll = {
     totalCount: number
     totalPage: number
 }
-type Order = {
+export type Order = {
     createTime: string
     newBeeMallOrderItemVOS: Array<OrderGood>
     orderId: number
@@ -66,7 +66,7 @@ type Order = {
     totalPrice: number
 }
 // 获取订单
-export const getOrderList = (status: string) => {
+export const getOrderList = (pageNumber: number, status: string) => {
     return http.request<{
         resultCode: number
         message: string
@@ -75,20 +75,20 @@ export const getOrderList = (status: string) => {
         url: '/order',
         method: 'get',
         params: {
-            pageNumber: '1',
+            pageNumber: pageNumber ?? 1,
             status: status ?? '',
         }
     })
 }
 
 // 取消订单
-export const cancelOrder = (id: string) => {
+export const cancelOrder = (no: string) => {
     return http.request<{
         data: null
         message: string
         resultCode: number
     }>({
-        url: `/order/${id}/cancel`,
+        url: `/order/${no}/cancel`,
         method: 'put'
     })
 }

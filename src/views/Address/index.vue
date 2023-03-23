@@ -76,7 +76,6 @@
         })
     }
     onMounted(() => {
-        console.log(route.query)
         init()
     })
 </script>
