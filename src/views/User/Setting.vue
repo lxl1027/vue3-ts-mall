@@ -13,7 +13,7 @@
 
 <script setup lang='ts'>
     import CommenHeader from '@/components/CommonHeader.vue'
-    import { ref, reactive, onMounted } from 'vue'
+    import { reactive, onMounted } from 'vue'
     import { getInfo, logout, modifyInfo } from '@/api/user'
     import { removeToken } from '@/utils/auth'
     import { showFailToast, showSuccessToast } from 'vant';
@@ -24,7 +24,6 @@
         password: '',
     })
     const handleModify = async () => {
-        console.log(state.password.length)
         if (state.password !== '' && state.password.length < 6) {
             showFailToast('密码长度要大于6个字符')
             state.password = ''

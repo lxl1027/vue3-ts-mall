@@ -97,15 +97,15 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         }
     },
 ]
-export const asyncRoutes = []
-
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
         ...constantRoutes,
-        { path: '/:pathMatch(.*)', redirect: '/' }, // 
+        { path: '/:pathMatch(.*)', redirect: '/' },
     ]
 })
-
+router.beforeEach((to, from, next) => {
+    next()
+})
 export default router

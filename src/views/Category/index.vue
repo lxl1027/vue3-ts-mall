@@ -100,7 +100,11 @@
             font-size: (16 / 37.5rem);
             width: (52 / 37.5rem);
             height: 100%;
-            color: var(--van-nav-bar-icon-color);
+            color: @primary;
+
+            .van-icon {
+                font-weight: 700;
+            }
         }
 
         &-search {

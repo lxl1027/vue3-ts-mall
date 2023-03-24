@@ -31,11 +31,9 @@
 
     const goBack = () => {
         const path = props.path
-        console.log(path)
         if (path) {
             router.push(path)
         } else {
-            console.log(1)
             router.back()
         }
         emits('callback')
@@ -43,6 +41,8 @@
 </script>
 
 <style scoped lang='less'>
+    @import '@/styles/mixin.less';
+
     header {
         position: fixed;
         top: 0;
@@ -51,5 +51,16 @@
         width: 100%;
         background: #fff;
         border-bottom: 0.02667rem solid #dcdcdc;
+
+        :deep(.van-nav-bar__title) {
+            font-size: (14 / 37.5rem);
+            color: #252525;
+            font-weight: 400;
+        }
+
+        :deep(.van-icon) {
+            font-weight: 700;
+            color: @primary;
+        }
     }
 </style>

@@ -71,7 +71,6 @@
         state.price = sellingPrice
         state.content = goodsDetailContent
         state.id = goodsId
-        console.log(state.content)
     })
 
 </script>

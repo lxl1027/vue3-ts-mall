@@ -30,9 +30,9 @@
 </template>
 
 <script setup lang='ts'>
-    import { ref, reactive, onMounted } from 'vue'
+    import { reactive } from 'vue'
     import { searchGoods } from '@/api/good'
-    import type { SearchParams, Good } from '@/api/good'
+    import type { Good } from '@/api/good'
     import { useRouter, useRoute } from 'vue-router'
     const router = useRouter()
     const route = useRoute()
@@ -54,6 +54,7 @@
         onRefresh()
     }
     const onRefresh = () => {
+        // 进行刷新前 初始化一下
         state.refreshing = true
         state.finished = false
         state.loading = true
@@ -61,34 +62,43 @@
         onLoad()
     }
     const onLoad = () => {
+        // 不在下拉刷新中且当前页小于总页数
         if (!state.refreshing && state.page < state.totalPage) {
             state.page++
         }
+        // 处于下拉刷新中 把list置空 重新获取数据
         if (state.refreshing) {
             state.list = []
             state.refreshing = false
         }
+        // 获取数据
         init()
     }
-
     const init = async () => {
+        // 从第三级分类点进来的路由query传参会有分类id
         const categoryId = route.query.categoryId as string
-        console.log(categoryId)
+        // id不存在且关键词为空 把finished设为true 不再触发load事件
         if (!categoryId && !state.keyword) {
             state.finished = true
             state.loading = false
             return
         }
+        // id存在或者关键词不为空字符串
         const params = {
             pageNumber: state.page,
             keyword: state.keyword,
             orderBy: state.active,
             goodsCategoryId: categoryId
         }
+        // 发请求获取搜索结果并解构出来
         const { data: { data } } = await searchGoods(params)
+        // 把list拼接起来
         state.list = state.list.concat(data.list)
+        // 设置总页数
         state.totalPage = data.totalPage
+        // 停止load事件
         state.loading = false
+        // 当前页大于等于总页数时 finished为true 不再触发load事件
         if (state.page >= state.totalPage) state.finished = true
     }
 </script>
@@ -119,7 +129,11 @@
                 font-size: (16 / 37.5rem);
                 width: (52 / 37.5rem);
                 height: 100%;
-                color: var(--van-nav-bar-icon-color);
+                color: @primary;
+
+                .van-icon {
+                    font-weight: 700;
+                }
             }
 
             &-search {

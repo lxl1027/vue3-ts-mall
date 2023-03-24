@@ -6,9 +6,9 @@
         <div class="cart-body">
             <van-checkbox-group v-model="state.idList" ref="checkboxGroup">
                 <van-swipe-cell :right-width="50" v-for="good in state.goodList" :key="good.cartItemId">
-                    <div class="good">
-                        <van-checkbox icon-size="0.533334rem" :name="good.cartItemId"
-                            checked-color="#1baeae"></van-checkbox>
+                    <div class="good" @click="router.push(`/info/${good.goodsId}`)">
+                        <van-checkbox icon-size="0.533334rem" :name="good.cartItemId" checked-color="#1baeae"
+                            @click.stop></van-checkbox>
                         <img class="good-img" :src="$filters.prefix(good.goodsCoverImg)">
                         <div class="good-desc">
                             <div class="title-and-count">
@@ -18,7 +18,7 @@
                             <div class="price-and-step">
                                 <div class="price">¥{{ good.sellingPrice }}</div>
                                 <van-stepper :model-value="good.goodsCount" integer min="1" max="5" :auto-fixed="true"
-                                    :name="good.cartItemId" @change="handleBlur" />
+                                    :name="good.cartItemId" @change="handleBlur" @click.stop />
                             </div>
                         </div>
                     </div>

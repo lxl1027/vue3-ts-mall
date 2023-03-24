@@ -15,8 +15,9 @@
         </div>
         <!-- 商品 -->
         <div class="good-list">
-            <div class="good" v-for="good in state.goodList" :key="good.cartItemId">
-                <img :src="good.goodsCoverImg" alt="">
+            <div class="good" v-for="good in state.goodList" :key="good.cartItemId"
+                @click="router.push(`/info/${good.goodsId}`)">
+                <img :src="$filters.prefix(good.goodsCoverImg)" alt="">
                 <div class="good-desc">
                     <div class="title-and-count">
                         <span class="title">{{ good.goodsName }}</span>

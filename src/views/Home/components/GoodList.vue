@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang='ts'>
-    import { ref, reactive } from 'vue'
     import type { Good } from '@/api/home'
     defineProps<{
         list: Good[]
@@ -64,12 +63,6 @@
                     .good-name {
                         line-height: 1.5;
                         color: #222333;
-                        // overflow: hidden;
-                        // text-overflow: ellipsis;
-                        // display: -webkit-box;
-                        // -webkit-box-orient: vertical;
-                        // -webkit-line-clamp: 2;
-                        // overflow: hidden;
                     }
 
                     .good-price {
@@ -78,7 +71,6 @@
                         color: @primary;
                     }
                 }
-
 
                 &:nth-child(2n + 1) {
                     border-right: (0.5 / 37.5rem) solid #e9e9e9;
