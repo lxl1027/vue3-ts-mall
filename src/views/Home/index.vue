@@ -2,13 +2,13 @@
     <div class="home">
         <!-- header -->
         <header class="home-header" :class="isTop ? 'active' : ''">
-            <div class="home-header-left"><van-icon name="apps-o" /></div>
+            <div class="home-header-left" @click="router.push('/cate')"><van-icon name="apps-o" /></div>
             <div class="home-header-middle">
                 <span class="app-name">新蜂商城</span>
                 <van-icon class="search" name="search" />
                 <span>山河无恙，人间皆安</span>
             </div>
-            <div class="home-header-right"><van-icon name="manager-o" /></div>
+            <div class="home-header-right" @click="router.push('/user')"><van-icon name="manager-o" /></div>
         </header>
         <!-- 轮播图 -->
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -18,7 +18,7 @@
         </van-swipe>
         <!-- 宫格 -->
         <div class="cate-list">
-            <div class="cate" v-for="cate in cateList" :key="cate.categoryId">
+            <div class="cate" v-for="cate in cateList" :key="cate.categoryId" @click="tips">
                 <img class="cate-img" :src="cate.imgUrl" alt="">
                 <div class="cate-name">{{ cate.name }}</div>
             </div>
@@ -48,8 +48,10 @@
     import GoodList from './components/GoodList.vue'
     import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
     import { getHome } from '@/api/home'
+    import { useRouter } from 'vue-router'
     import type { Carousel, Good } from '@/api/home'
-
+    import { showToast } from 'vant'
+    const router = useRouter()
     // 控制header的状态 
     let isTop = ref(false)
     // 轮播图的数据
@@ -112,6 +114,13 @@
         } else {
             isTop.value = false
         }
+    }
+    // 敬请期待
+    const tips = () => {
+        showToast({
+            message: '敬请期待！',
+            duration: 1000
+        })
     }
     // 请求首页数据的函数
     const getHomeData = async () => {

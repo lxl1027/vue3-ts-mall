@@ -31,6 +31,17 @@ export const login = (name: string, password: string) => {
         }
     })
 }
+// logout
+export const logout = () => {
+    return http.request<{
+        resultCode: number
+        message: string
+        data: null
+    }>({
+        url: '/user/logout',
+        method: 'post'
+    })
+}
 // 获取用户信息
 export const getInfo = () => {
     return http.request<{
@@ -44,5 +55,29 @@ export const getInfo = () => {
     }>({
         url: '/user/info',
         method: 'get'
+    })
+}
+
+// 更改用户信息
+export const modifyInfo = (name: string, intro: string, password: string) => {
+    const params: {
+        introduceSign: string
+        passwordMd5?: string
+        nickName: string
+    } = {
+        nickName: name,
+        introduceSign: intro,
+    }
+    if (password !== '') {
+        params.passwordMd5 = md5(password)
+    }
+    return http.request<{
+        resultCode: number
+        message: string
+        data: null
+    }>({
+        url: '/user/info',
+        method: 'put',
+        data: params
     })
 }
