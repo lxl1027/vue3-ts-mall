@@ -18,4 +18,24 @@ app.use(store)
 // 注册路由
 app.use(router)
 
+app.config.globalProperties.$filters = {
+    prefix(url: string) {
+        if (url && url.startsWith('http')) {
+            return url
+        } else {
+            return `http://backend-api-01.newbee.ltd${url}`
+        }
+    }
+}
+
+type Filters = {
+    prefix(url: string): string
+}
+
+declare module '@vue/runtime-core' {
+    export interface ComponentCustomProperties {
+        $filters: Filters
+    }
+}
+
 app.mount('#app')

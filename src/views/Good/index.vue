@@ -5,7 +5,7 @@
         <!-- 商品图片 -->
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
             <van-swipe-item v-for="(carousel, index) in state.carouselList" :key="index">
-                <img :src="carousel">
+                <img :src="$filters.prefix(carousel)">
             </van-swipe-item>
         </van-swipe>
         <!-- 商品信息-->

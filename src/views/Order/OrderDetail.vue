@@ -36,7 +36,8 @@
         <!-- 订单中的商品信息 -->
         <div class="good-list">
             <van-card v-for="good in state.orderDetail.newBeeMallOrderItemVOS" :num="good.goodsCount"
-                :price="`${good.sellingPrice}.00`" desc="全场包邮" :title="good.goodsName" :thumb="good.goodsCoverImg" />
+                :price="`${good.sellingPrice}.00`" desc="全场包邮" :title="good.goodsName"
+                :thumb="$filters.prefix(good.goodsCoverImg)" />
         </div>
         <!-- 弹出层 -->
         <van-popup closeable v-model:show="state.showPay" position="bottom" :style="{ height: '30%' }"

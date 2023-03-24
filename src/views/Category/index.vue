@@ -4,7 +4,7 @@
         <div class="category-header-icon" @click="router.back()">
             <van-icon name="arrow-left" />
         </div>
-        <div class="category-header-search">
+        <div class="category-header-search" @click="router.push('/good-list')">
             <van-icon class="category-header-search-icon" name="search" />
             <span class="category-header-search-ph">山河无恙，人间皆安</span>
         </div>
@@ -33,7 +33,7 @@
                         <!-- 第三级 -->
                         <div class="third-level">
                             <div class="third-level-item" v-for="ThirdLevelCate in SecondLevelCate.thirdLevelCategoryVOS"
-                                :key="ThirdLevelCate.categoryId">
+                                :key="ThirdLevelCate.categoryId" @click="goToSearch(ThirdLevelCate.categoryId)">
                                 <!-- 图片 -->
                                 <img src="//s.weituibao.com/1583591077131/%E5%88%86%E7%B1%BB.png" />
                                 <!-- 第三级标题 -->
@@ -61,6 +61,15 @@
         FirstLevelCateList: [],
         currentCateId: 15
     })
+
+    const goToSearch = (id: number) => {
+        router.push({
+            path: '/good-list',
+            query: {
+                categoryId: id
+            }
+        })
+    }
 
     onMounted(async () => {
         const { data: { data } } = await getCate()

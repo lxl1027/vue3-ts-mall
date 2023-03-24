@@ -9,7 +9,7 @@
                     <div class="good">
                         <van-checkbox icon-size="0.533334rem" :name="good.cartItemId"
                             checked-color="#1baeae"></van-checkbox>
-                        <img class="good-img" :src="good.goodsCoverImg">
+                        <img class="good-img" :src="$filters.prefix(good.goodsCoverImg)">
                         <div class="good-desc">
                             <div class="title-and-count">
                                 <span class="title">{{ good.goodsName }}</span>

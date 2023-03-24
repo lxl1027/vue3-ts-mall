@@ -6,7 +6,7 @@
             <div class="home-header-middle">
                 <span class="app-name">新蜂商城</span>
                 <van-icon class="search" name="search" />
-                <span>山河无恙，人间皆安</span>
+                <span @click="router.push('/good-list')">山河无恙，人间皆安</span>
             </div>
             <div class="home-header-right" @click="router.push('/user')"><van-icon name="manager-o" /></div>
         </header>

@@ -42,7 +42,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     },
     {
         path: '/info/:goodsId',
-        component: () => import('@/views/GoodInfo/index.vue'),
+        component: () => import('@/views/Good/index.vue'),
         meta: {
             isShowInPage: false
         }
@@ -85,6 +85,13 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     {
         path: '/setting',
         component: () => import('@/views/User/Setting.vue'),
+        meta: {
+            isShowInPage: false
+        }
+    },
+    {
+        path: '/good-list',
+        component: () => import('@/views/Good/GoodList.vue'),
         meta: {
             isShowInPage: false
         }

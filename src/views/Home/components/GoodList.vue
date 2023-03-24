@@ -5,7 +5,7 @@
         </div>
         <ul class="good-list-content">
             <router-link tag='li' :to="`/info/${item.goodsId}`" v-for="item in list" :key="item.goodsId" class="good">
-                <img class="good-img" :src="item.goodsCoverImg" alt="">
+                <img class="good-img" :src="$filters.prefix(item.goodsCoverImg)" alt="">
                 <div class="good-desc">
                     <h3 class="good-name">{{ item.goodsName }}</h3>
                     <p class="good-price">￥{{ item.sellingPrice }}</p>

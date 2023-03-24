@@ -96,3 +96,36 @@ export const settleGood = (ids: string) => {
         }
     })
 }
+
+export type SearchParams = {
+    pageNumber: number
+    keyword: string
+    orderBy: string
+    goodsCategoryId?: string
+}
+type Data = {
+    currPage: number
+    list: Array<Good>
+    pageSize: number
+    totalCount: number
+    totalPage: number
+}
+export type Good = {
+    goodsCoverImg: string
+    goodsId: number
+    goodsIntro: string
+    goodsName: string
+    sellingPrice: number
+}
+// 搜索商品
+export const searchGoods = (params: SearchParams) => {
+    return http.request<{
+        resultCode: number
+        message: string
+        data: Data
+    }>({
+        url: '/search',
+        method: 'get',
+        params,
+    })
+}
